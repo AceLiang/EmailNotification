@@ -5,11 +5,10 @@ __author__ = 'Liangmingli'
 import smtplib
 from email.mime.text import MIMEText
 from email.utils import formataddr
+import os
 import sys
-import pyping
 server = '64.137.241.113'
 TIMEOUT = 5
-URL = 'https://www.google.com'
 
 
 
@@ -37,10 +36,10 @@ def mail(title="菜鸟教程发送邮件测试" ,
 if __name__ == "__main__":
     subject = sys.argv[1]
     message = sys.argv[2]
+    response = os.system("ping -c 1 " + server)
 
-    r = pyping.ping(server)
 
-    if r.ret_code == 0:
+    if response  == 0:
         print("邮件无需发送")
     else:
         print("send email")

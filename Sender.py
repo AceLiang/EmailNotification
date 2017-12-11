@@ -2,14 +2,11 @@
 # -*- encoding: utf-8 -*-
 __author__ = 'Liangmingli'
 
-
-
 import smtplib
 from email.mime.text import MIMEText
 from email.utils import formataddr
 import sys
-import requests
-
+import pyping
 server = '64.137.241.113'
 TIMEOUT = 5
 URL = 'https://www.google.com'
@@ -40,14 +37,16 @@ def mail(title="菜鸟教程发送邮件测试" ,
 if __name__ == "__main__":
     subject = sys.argv[1]
     message = sys.argv[2]
-    try:
-        respone = requests.get(URL,timeout = TIMEOUT)
+
+    r = pyping.ping(server)
+
+    if r.ret_code == 0:
         print("邮件无需发送")
-    except:
+    else:
         print("send email")
 
-    ret = mail(title=subject,message=message,senderName=server)
-    if ret:
-        print("邮件发送成功")
-    else:
-        print("邮件发送失败")
+        ret = mail(title=subject,message=message,senderName=server)
+        if ret:
+            print("邮件发送成功")
+        else:
+            print("邮件发送失败")

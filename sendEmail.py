@@ -17,6 +17,7 @@ if __name__ == "__main__":
     message = sys.argv[2]
     try:
         respone = requests.get(URL,timeout = TIMEOUT)
+        print("邮件无需发送")
     except:
         print("send email")
 

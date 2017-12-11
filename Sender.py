@@ -7,7 +7,7 @@ from email.mime.text import MIMEText
 from email.utils import formataddr
 import os
 import sys
-server = '64.137.241.113'
+server = '185.232.64.229'
 TIMEOUT = 5
 
 

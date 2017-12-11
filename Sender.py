@@ -7,6 +7,14 @@ __author__ = 'Liangmingli'
 import smtplib
 from email.mime.text import MIMEText
 from email.utils import formataddr
+import sys
+import requests
+
+server = '64.137.241.113'
+TIMEOUT = 5
+URL = 'https://www.google.com'
+
+
 
 my_sender='244479222@qq.com'    # 发件人邮箱账号
 my_pass = 'qmkmciexiqbxbghh'    # 发件人邮箱密码
@@ -29,3 +37,17 @@ def mail(title="菜鸟教程发送邮件测试" ,
         ret=False
     return ret
 
+if __name__ == "__main__":
+    subject = sys.argv[1]
+    message = sys.argv[2]
+    try:
+        respone = requests.get(URL,timeout = TIMEOUT)
+        print("邮件无需发送")
+    except:
+        print("send email")
+
+    ret = mail(title=subject,message=message,senderName=server)
+    if ret:
+        print("邮件发送成功")
+    else:
+        print("邮件发送失败")
